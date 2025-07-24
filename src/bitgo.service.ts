@@ -45,6 +45,12 @@ export class BitgoService {
     return address;
   }
 
+  async getWalletTransactions(walletId: string, coin: string = 'tbtc') {
+    const wallet = await this.bitgo.coin(coin).wallets().get({ id: walletId });
+    const transactions = await wallet.transactions();
+    return transactions;
+  }
+
   async getWalletBalance(walletId: string, coin: string = 'tbtc') {
     const wallet = await this.bitgo.coin(coin).wallets().get({ id: walletId });
     const balance = wallet.balance();

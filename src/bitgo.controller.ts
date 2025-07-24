@@ -62,6 +62,13 @@ export class BitgoController {
     return balance;
   }
 
+  @Get(':id/transactions')
+  @ApiOperation({ summary: 'Consultar transações da wallet' })
+  @ApiParam({ name: 'id', description: 'ID da wallet' })
+  async getTransactions(@Param('id') id: string) {
+    return this.bitgoService.getWalletTransactions(id);
+  }
+
   @Post(':id/send')
   @ApiOperation({ summary: 'Enviar cripto para outro endereço' })
   @ApiParam({ name: 'id', description: 'ID da wallet' })
